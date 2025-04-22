@@ -280,6 +280,7 @@ Makefile: ../../TcpServer.pro G:/Qt/5.15.2/mingw81_64/mkspecs/win32-g++/qmake.co
 		G:/Qt/5.15.2/mingw81_64/lib/Qt5Widgets.prl \
 		G:/Qt/5.15.2/mingw81_64/lib/Qt5Gui.prl \
 		G:/Qt/5.15.2/mingw81_64/lib/Qt5Network.prl \
+		G:/Qt/5.15.2/mingw81_64/lib/Qt5Sql.prl \
 		G:/Qt/5.15.2/mingw81_64/lib/Qt5Core.prl \
 		G:/Qt/5.15.2/mingw81_64/lib/qtmain.prl \
 		G:/Qt/5.15.2/mingw81_64/mkspecs/features/build_pass.prf \
@@ -495,6 +496,7 @@ G:/Qt/5.15.2/mingw81_64/mkspecs/features/lex.prf:
 G:/Qt/5.15.2/mingw81_64/lib/Qt5Widgets.prl:
 G:/Qt/5.15.2/mingw81_64/lib/Qt5Gui.prl:
 G:/Qt/5.15.2/mingw81_64/lib/Qt5Network.prl:
+G:/Qt/5.15.2/mingw81_64/lib/Qt5Sql.prl:
 G:/Qt/5.15.2/mingw81_64/lib/Qt5Core.prl:
 G:/Qt/5.15.2/mingw81_64/lib/qtmain.prl:
 G:/Qt/5.15.2/mingw81_64/mkspecs/features/build_pass.prf:

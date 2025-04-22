@@ -12,9 +12,9 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -23,42 +23,93 @@ QT_BEGIN_NAMESPACE
 class Ui_TcpClient
 {
 public:
+    QWidget *widget;
     QVBoxLayout *verticalLayout;
-    QTextEdit *textEdit;
     QHBoxLayout *horizontalLayout;
-    QLineEdit *lineEdit;
-    QPushButton *send_pd;
+    QLabel *name_lab;
+    QLineEdit *name_le;
+    QHBoxLayout *horizontalLayout_2;
+    QLabel *pwd_lab;
+    QLineEdit *pwd_le;
+    QPushButton *login_pb;
+    QPushButton *regist_pb;
+    QPushButton *cancel_pb;
 
     void setupUi(QWidget *TcpClient)
     {
         if (TcpClient->objectName().isEmpty())
             TcpClient->setObjectName(QString::fromUtf8("TcpClient"));
-        TcpClient->resize(329, 354);
-        verticalLayout = new QVBoxLayout(TcpClient);
+        TcpClient->resize(333, 200);
+        widget = new QWidget(TcpClient);
+        widget->setObjectName(QString::fromUtf8("widget"));
+        widget->setGeometry(QRect(0, 6, 331, 191));
+        verticalLayout = new QVBoxLayout(widget);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        textEdit = new QTextEdit(TcpClient);
-        textEdit->setObjectName(QString::fromUtf8("textEdit"));
-
-        verticalLayout->addWidget(textEdit);
-
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        lineEdit = new QLineEdit(TcpClient);
-        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
-        lineEdit->setMinimumSize(QSize(0, 30));
-        lineEdit->setMaximumSize(QSize(16777215, 30));
+        name_lab = new QLabel(widget);
+        name_lab->setObjectName(QString::fromUtf8("name_lab"));
+        name_lab->setMinimumSize(QSize(0, 30));
+        name_lab->setMaximumSize(QSize(16777215, 30));
+        QFont font;
+        font.setFamily(QString::fromUtf8("JetBrainsMono NF"));
+        font.setPointSize(13);
+        name_lab->setFont(font);
 
-        horizontalLayout->addWidget(lineEdit);
+        horizontalLayout->addWidget(name_lab);
 
-        send_pd = new QPushButton(TcpClient);
-        send_pd->setObjectName(QString::fromUtf8("send_pd"));
-        send_pd->setMinimumSize(QSize(0, 30));
-        send_pd->setMaximumSize(QSize(16777215, 30));
+        name_le = new QLineEdit(widget);
+        name_le->setObjectName(QString::fromUtf8("name_le"));
+        name_le->setMinimumSize(QSize(0, 30));
+        name_le->setMaximumSize(QSize(16777215, 30));
 
-        horizontalLayout->addWidget(send_pd);
+        horizontalLayout->addWidget(name_le);
 
 
         verticalLayout->addLayout(horizontalLayout);
+
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        pwd_lab = new QLabel(widget);
+        pwd_lab->setObjectName(QString::fromUtf8("pwd_lab"));
+        pwd_lab->setMinimumSize(QSize(0, 30));
+        pwd_lab->setMaximumSize(QSize(16777215, 30));
+        pwd_lab->setFont(font);
+
+        horizontalLayout_2->addWidget(pwd_lab);
+
+        pwd_le = new QLineEdit(widget);
+        pwd_le->setObjectName(QString::fromUtf8("pwd_le"));
+        pwd_le->setMinimumSize(QSize(0, 30));
+        pwd_le->setMaximumSize(QSize(16777215, 30));
+        pwd_le->setEchoMode(QLineEdit::Password);
+
+        horizontalLayout_2->addWidget(pwd_le);
+
+
+        verticalLayout->addLayout(horizontalLayout_2);
+
+        login_pb = new QPushButton(widget);
+        login_pb->setObjectName(QString::fromUtf8("login_pb"));
+        login_pb->setMinimumSize(QSize(0, 30));
+        login_pb->setFont(font);
+
+        verticalLayout->addWidget(login_pb);
+
+        regist_pb = new QPushButton(widget);
+        regist_pb->setObjectName(QString::fromUtf8("regist_pb"));
+        regist_pb->setMinimumSize(QSize(0, 30));
+        regist_pb->setFont(font);
+
+        verticalLayout->addWidget(regist_pb);
+
+        cancel_pb = new QPushButton(widget);
+        cancel_pb->setObjectName(QString::fromUtf8("cancel_pb"));
+        cancel_pb->setMinimumSize(QSize(0, 30));
+        cancel_pb->setFont(font);
+
+        verticalLayout->addWidget(cancel_pb);
 
 
         retranslateUi(TcpClient);
@@ -69,7 +120,11 @@ public:
     void retranslateUi(QWidget *TcpClient)
     {
         TcpClient->setWindowTitle(QCoreApplication::translate("TcpClient", "TcpClient", nullptr));
-        send_pd->setText(QCoreApplication::translate("TcpClient", "\345\217\221\351\200\201", nullptr));
+        name_lab->setText(QCoreApplication::translate("TcpClient", "\347\224\250\346\210\267\345\220\215\357\274\232", nullptr));
+        pwd_lab->setText(QCoreApplication::translate("TcpClient", "\345\257\206  \347\240\201\357\274\232", nullptr));
+        login_pb->setText(QCoreApplication::translate("TcpClient", "\347\231\273\345\275\225", nullptr));
+        regist_pb->setText(QCoreApplication::translate("TcpClient", "\346\263\250\345\206\214", nullptr));
+        cancel_pb->setText(QCoreApplication::translate("TcpClient", "\346\263\250\351\224\200", nullptr));
     } // retranslateUi
 
 };

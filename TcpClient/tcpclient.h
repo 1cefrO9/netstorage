@@ -5,6 +5,7 @@
 #include <QTcpSocket>
 #include <QWidget>
 
+#include "operatewidget.h"
 #include "protocol.h"
 
 QT_BEGIN_NAMESPACE
@@ -20,12 +21,21 @@ class TcpClient : public QWidget {
   TcpClient(QWidget *parent = nullptr);
   ~TcpClient();
   void loadConfig();
+  static TcpClient &getInstance();
+  QTcpSocket &getTcpSocket();
 
  public slots:
   void showConnect();
+  void receiveMsg();
 
  private slots:
-  void on_send_pd_clicked();
+  // void on_send_pd_clicked();
+
+  void on_login_pb_clicked();
+
+  void on_regist_pb_clicked();
+
+  void on_cancel_pb_clicked();
 
  private:
   Ui::TcpClient *ui;
