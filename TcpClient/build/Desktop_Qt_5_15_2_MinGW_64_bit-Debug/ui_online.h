@@ -23,7 +23,7 @@ QT_BEGIN_NAMESPACE
 class Ui_Online
 {
 public:
-    QWidget *widget;
+    QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout;
     QListWidget *online_lw;
     QVBoxLayout *verticalLayout;
@@ -35,44 +35,43 @@ public:
     {
         if (Online->objectName().isEmpty())
             Online->setObjectName(QString::fromUtf8("Online"));
-        Online->resize(400, 300);
-        widget = new QWidget(Online);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(0, 0, 401, 301));
-        horizontalLayout = new QHBoxLayout(widget);
+        Online->resize(645, 470);
+        verticalLayout_2 = new QVBoxLayout(Online);
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        online_lw = new QListWidget(widget);
-        new QListWidgetItem(online_lw);
-        new QListWidgetItem(online_lw);
-        new QListWidgetItem(online_lw);
+        online_lw = new QListWidget(Online);
         online_lw->setObjectName(QString::fromUtf8("online_lw"));
+        QFont font;
+        font.setPointSize(16);
+        online_lw->setFont(font);
 
         horizontalLayout->addWidget(online_lw);
 
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        verticalSpacer = new QSpacerItem(20, 88, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer = new QSpacerItem(20, 98, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout->addItem(verticalSpacer);
 
-        addFriend_pb = new QPushButton(widget);
+        addFriend_pb = new QPushButton(Online);
         addFriend_pb->setObjectName(QString::fromUtf8("addFriend_pb"));
-        addFriend_pb->setMinimumSize(QSize(0, 30));
-        addFriend_pb->setMaximumSize(QSize(16777215, 30));
-        QFont font;
-        font.setFamily(QString::fromUtf8("JetBrainsMono NF"));
-        font.setPointSize(13);
-        addFriend_pb->setFont(font);
+        QFont font1;
+        font1.setFamily(QString::fromUtf8("Adobe \345\256\213\344\275\223 Std L"));
+        font1.setPointSize(24);
+        addFriend_pb->setFont(font1);
 
         verticalLayout->addWidget(addFriend_pb);
 
-        verticalSpacer_2 = new QSpacerItem(20, 88, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer_2 = new QSpacerItem(20, 98, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout->addItem(verticalSpacer_2);
 
 
         horizontalLayout->addLayout(verticalLayout);
+
+
+        verticalLayout_2->addLayout(horizontalLayout);
 
 
         retranslateUi(Online);
@@ -83,17 +82,6 @@ public:
     void retranslateUi(QWidget *Online)
     {
         Online->setWindowTitle(QCoreApplication::translate("Online", "Form", nullptr));
-
-        const bool __sortingEnabled = online_lw->isSortingEnabled();
-        online_lw->setSortingEnabled(false);
-        QListWidgetItem *___qlistwidgetitem = online_lw->item(0);
-        ___qlistwidgetitem->setText(QCoreApplication::translate("Online", "1111", nullptr));
-        QListWidgetItem *___qlistwidgetitem1 = online_lw->item(1);
-        ___qlistwidgetitem1->setText(QCoreApplication::translate("Online", "2222", nullptr));
-        QListWidgetItem *___qlistwidgetitem2 = online_lw->item(2);
-        ___qlistwidgetitem2->setText(QCoreApplication::translate("Online", "3333", nullptr));
-        online_lw->setSortingEnabled(__sortingEnabled);
-
         addFriend_pb->setText(QCoreApplication::translate("Online", "\345\212\240\345\245\275\345\217\213", nullptr));
     } // retranslateUi
 

@@ -12,6 +12,7 @@ class MyTcpServer : public QTcpServer {
   static MyTcpServer &getInstance();  // 实现单例模式获取静态对象的引用
   void incomingConnection(
       qintptr handle) override;  // 判断何时有客户端接入并处理
+  void resend(const char *pername, PDU *pdu);
 
  private:
   QList<MyTcpSocket *> m_tcpSocketList;  // 存储服务器所有已经建立的Socket连接

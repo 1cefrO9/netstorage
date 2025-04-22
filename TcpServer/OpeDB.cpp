@@ -102,3 +102,74 @@ QStringList OpeDB::handleAllOnline() {
   }
   return result;
 }
+
+int OpeDB::handleSearchUsr(const char *name) {
+  if (NULL == name) {
+    return -1;
+  }
+  QString data =
+      QString("select online from userInfo where name = \'%1\'").arg(name);
+  QSqlQuery query;
+  query.exec(data);
+  if (query.next()) {
+    int res = query.value(0).toInt();
+    if (1 == res) {
+      return 1;
+    } else if (0 == res) {
+      return 0;
+    }
+  } else {
+    return -1;
+  }
+}
+
+int OpeDB::handleAddFriend(const char *pername, const char *name) {
+  if (NULL == pername || NULL == name) {
+    return -1;
+  }
+  QString data =
+      QString(
+          "select * from friend where (id = (select id from userInfo where "
+          "name=\'%1\') and friendId = (select id from userInfo where "
+          "name=\'%2\')) or (id = (select id from userInfo where name=\'%3\') "
+          "and friendId = (select id from userInfo where name=\'%4\'))")
+          .arg(pername)
+          .arg(name)
+          .arg(name)
+          .arg(pername);
+  qDebug() << data;
+  QSqlQuery query;
+  query.exec(data);
+  if (query.next()) {
+    return 0;
+  } else {
+    QString data =
+        QString("select online from userInfo where name = \'%1\'").arg(pername);
+    QSqlQuery query;
+    query.exec(data);
+    if (query.next()) {
+      int res = query.value(0).toInt();
+      if (1 == res) {
+        return 1;
+      } else if (0 == res) {
+        return 2;
+      }
+    } else {
+      return 3;
+    }
+  }
+}
+
+void OpeDB::handleAgreeAddFriend(const char *pername, const char *name) {
+  if (NULL == pername || NULL == name) {
+    return;
+  }
+  QString data =
+      QString(
+          "insert into friend(id, friendId) values((select id from userInfo "
+          "where name=\'%1\'), (select id from userInfo where name=\'%2\'))")
+          .arg(pername)
+          .arg(name);
+  QSqlQuery query;
+  query.exec(data);
+}

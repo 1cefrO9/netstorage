@@ -42,6 +42,8 @@ Friend::Friend(QWidget *parent) : QWidget(parent) {
   // 创建信号链接
   // 点击按钮事件
   connect(m_pShowOnlineUserPB, SIGNAL(clicked(bool)), this, SLOT(showOnline()));
+
+  connect(m_pSearchUserPB, SIGNAL(clicked(bool)), this, SLOT(searchUsr()));
 }
 
 void Friend::showAllOnlineUsr(PDU *pdu) {
@@ -61,5 +63,20 @@ void Friend::showOnline() {
     pdu = NULL;
   } else {
     m_pOnline->hide();
+  }
+}
+
+// 搜索用户
+void Friend::searchUsr() {
+  m_strSearchName = QInputDialog::getText(this, "搜索", "用户名");
+  if (!m_strSearchName.isEmpty()) {
+    qDebug() << "待查找的用户名为：" << m_strSearchName;
+    PDU *pdu = mkPDU(0);
+    memcpy(pdu->caData, m_strSearchName.toStdString().c_str(),
+           m_strSearchName.size());
+    pdu->uiMsgType = ENUM_MSG_TYPE_SEARCH_USR_REQUEST;
+    TcpClient::getInstance().getTcpSocket().write((char *)pdu, pdu->uiPDULen);
+    free(pdu);
+    pdu = NULL;
   }
 }

@@ -2,6 +2,7 @@
 #define FRIEND_H
 
 #include <QHBoxLayout>
+#include <QInputDialog>
 #include <QLineEdit>
 #include <QListWidget>
 #include <QPushButton>
@@ -19,6 +20,7 @@ class Friend : public QWidget {
   explicit Friend(QWidget *parent = 0);
   // 显示所有在线用户
   void showAllOnlineUsr(PDU *pdu);
+  QString m_strSearchName;
 
  signals:
 
@@ -26,6 +28,7 @@ class Friend : public QWidget {
   // 切换在线用户显示/隐藏状态
   void showOnline();
   // 查询用户
+  void searchUsr();
 
  private:
   QTextEdit *m_pShowMsgTE;           //显示信息
