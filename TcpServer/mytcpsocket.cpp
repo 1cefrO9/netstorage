@@ -167,6 +167,63 @@ void MyTcpSocket::recvMsg() {
       break;
     }
 
+    // 查看刷新在线好友列表请求
+    case ENUM_MSG_TYPE_FLUSH_FRIEND_REQUEST: {
+      char caName[32] = {'\0'};
+      strncpy(caName, pdu->caData, 32);
+      QStringList res = OpeDB::getInstance().handleFlushFriend(caName);
+      uint uiMsglen = res.size() * 32;
+      PDU *respdu = mkPDU(uiMsglen);
+      respdu->uiMsgType = ENUM_MSG_TYPE_FLUSH_FRIEND_RESPOND;
+      for (int i = 0; i < res.size(); i++) {
+        memcpy((char *)(respdu->caMsg) + i * 32,
+               res.at(i).toStdString().c_str(), res.at(i).size());
+      }
+      write((char *)respdu, respdu->uiPDULen);
+      free(respdu);
+      respdu = NULL;
+      break;
+    }
+
+    // 查看删除好友请求
+    case ENUM_MSG_TYPE_DELETE_FRIEND_REQUEST: {
+      char caSelName[32] = {'\0'};
+      char caFriendName[32] = {'\0'};
+      strncpy(caSelName, pdu->caData, 32);
+      strncpy(caFriendName, pdu->caData + 32, 32);
+      OpeDB::getInstance().handleDelFriend(caSelName, caFriendName);
+      PDU *respdu = mkPDU(0);
+      respdu->uiMsgType = ENUM_MSG_TYPE_DELETE_FRIEND_RESPOND;
+      strcpy(respdu->caData, DEL_FRIEND_OK);
+      write((char *)respdu, respdu->uiPDULen);
+      free(respdu);
+      respdu = NULL;
+      MyTcpServer::getInstance().resend(caFriendName, pdu);
+      break;
+    }
+
+    // 查看私聊请求
+    case ENUM_MSG_TYPE_PRIVATE_CHAT_REQUEST: {
+      char caPerName[32] = {'\0'};
+      memcpy(caPerName, pdu->caData + 32, 32);
+      qDebug() << caPerName;
+      MyTcpServer::getInstance().resend(caPerName, pdu);
+      break;
+    }
+
+    // 查看群聊请求
+    case ENUM_MSG_TYPE_GROUP_CHAT_REQUEST: {
+      char caName[32] = {'\0'};
+      strncpy(caName, pdu->caData, 32);
+      QStringList onlineFriend = OpeDB::getInstance().handleFlushFriend(caName);
+      QString temp;
+      for (int i = 0; i < onlineFriend.size(); i++) {
+        temp = onlineFriend.at(i);
+        MyTcpServer::getInstance().resend(temp.toStdString().c_str(), pdu);
+      }
+      break;
+    }
+
     default: {
       break;
     }

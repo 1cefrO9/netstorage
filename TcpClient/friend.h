@@ -21,6 +21,10 @@ class Friend : public QWidget {
   // 显示所有在线用户
   void showAllOnlineUsr(PDU *pdu);
   QString m_strSearchName;
+  // 回复最新在线的好友列表
+  void updateFriendList(PDU *pdu);
+  // 回复群聊信息
+  void updateGroupMsg(PDU *pdu);
 
  signals:
 
@@ -29,6 +33,14 @@ class Friend : public QWidget {
   void showOnline();
   // 查询用户
   void searchUsr();
+  // 刷新好友
+  void flushFriend();
+  // 删除好友
+  void deleteFriend();
+  // 私聊功能
+  void privateChat();
+  // 群聊功能
+  void groupChat();
 
  private:
   QTextEdit *m_pShowMsgTE;           //显示信息

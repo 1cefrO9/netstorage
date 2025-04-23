@@ -20,6 +20,8 @@ class OpeDB : public QObject {
   int handleSearchUsr(const char* name);
   int handleAddFriend(const char* pername, const char* name);
   void handleAgreeAddFriend(const char* pername, const char* name);
+  QStringList handleFlushFriend(const char* name);
+  bool handleDelFriend(const char* name, const char* friendName);
 
  signals:
 

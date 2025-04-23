@@ -5,6 +5,7 @@
 #include <QHostAddress>
 #include <QMessageBox>
 
+#include "privatechat.h"
 #include "ui_tcpclient.h"
 
 TcpClient::TcpClient(QWidget *parent) : QWidget(parent), ui(new Ui::TcpClient) {
@@ -149,6 +150,44 @@ void TcpClient::receiveMsg() {
       memcpy(caPerName, pdu->caData, 32);
       QMessageBox::information(this, "添加好友",
                                QString("添加%1好友失败").arg(caPerName));
+      break;
+    }
+
+    // 查看刷新在线好友列表回复
+    case ENUM_MSG_TYPE_FLUSH_FRIEND_RESPOND: {
+      OperateWidget::getInstance().getFriend()->updateFriendList(pdu);
+      break;
+    }
+
+    // 查看删除好友回复
+    case ENUM_MSG_TYPE_DELETE_FRIEND_REQUEST: {
+      char caName[32] = {'\0'};
+      memcpy(caName, pdu->caData, 32);
+      QMessageBox::information(this, "删除好友",
+                               QString("%1删除你作为他的好友").arg(caName));
+      break;
+    }
+    case ENUM_MSG_TYPE_DELETE_FRIEND_RESPOND: {
+      QMessageBox::information(this, "删除好友", "删除好友成功");
+      break;
+    }
+
+      // 查看私聊回复
+    case ENUM_MSG_TYPE_PRIVATE_CHAT_REQUEST: {
+      if (PrivateChat::getInstance().isHidden()) {
+        PrivateChat::getInstance().show();
+      }
+      char caSendName[32] = {'\0'};
+      memcpy(caSendName, pdu->caData, 32);
+      QString strSendName = caSendName;
+      PrivateChat::getInstance().setChatName(caSendName);
+      PrivateChat::getInstance().updateMsg(pdu);
+      break;
+    }
+
+    // 查看群聊回复
+    case ENUM_MSG_TYPE_GROUP_CHAT_REQUEST: {
+      OperateWidget::getInstance().getFriend()->updateGroupMsg(pdu);
       break;
     }
 
