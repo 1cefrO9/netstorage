@@ -24,6 +24,8 @@ class TcpClient : public QWidget {
   static TcpClient &getInstance();
   QTcpSocket &getTcpSocket();
   QString loginName();
+  QString curPath();
+  void setCurPath(QString strCurPath);
 
  public slots:
   void showConnect();
@@ -45,5 +47,7 @@ class TcpClient : public QWidget {
   // 连接服务器 和服务器进行数据交互
   QTcpSocket m_tcpSocket;
   QString m_strLoginName;
+  QString m_strCurPath;
+  QFile m_file;
 };
 #endif  // TCPCLIENT_H

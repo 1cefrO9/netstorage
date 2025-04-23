@@ -29,3 +29,5 @@ OperateWidget &OperateWidget::getInstance() {
 }
 
 Friend *OperateWidget::getFriend() { return m_pFriend; }
+
+Book *OperateWidget::getBook() { return m_pBook; }

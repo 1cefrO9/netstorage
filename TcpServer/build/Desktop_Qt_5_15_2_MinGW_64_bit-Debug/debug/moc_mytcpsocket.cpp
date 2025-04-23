@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MyTcpSocket_t {
-    QByteArrayData data[8];
-    char stringdata0[73];
+    QByteArrayData data[12];
+    char stringdata0[119];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -39,11 +39,17 @@ QT_MOC_LITERAL(3, 21, 12), // "MyTcpSocket*"
 QT_MOC_LITERAL(4, 34, 8), // "mysocket"
 QT_MOC_LITERAL(5, 43, 7), // "recvMsg"
 QT_MOC_LITERAL(6, 51, 13), // "clientOffline"
-QT_MOC_LITERAL(7, 65, 7) // "getName"
+QT_MOC_LITERAL(7, 65, 7), // "getName"
+QT_MOC_LITERAL(8, 73, 16), // "sendFileToClient"
+QT_MOC_LITERAL(9, 90, 7), // "copyDir"
+QT_MOC_LITERAL(10, 98, 9), // "strSrcDir"
+QT_MOC_LITERAL(11, 108, 10) // "strDestDir"
 
     },
     "MyTcpSocket\0offline\0\0MyTcpSocket*\0"
-    "mysocket\0recvMsg\0clientOffline\0getName"
+    "mysocket\0recvMsg\0clientOffline\0getName\0"
+    "sendFileToClient\0copyDir\0strSrcDir\0"
+    "strDestDir"
 };
 #undef QT_MOC_LITERAL
 
@@ -53,7 +59,7 @@ static const uint qt_meta_data_MyTcpSocket[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -61,12 +67,14 @@ static const uint qt_meta_data_MyTcpSocket[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   34,    2, 0x06 /* Public */,
+       1,    1,   44,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       5,    0,   37,    2, 0x0a /* Public */,
-       6,    0,   38,    2, 0x0a /* Public */,
-       7,    0,   39,    2, 0x0a /* Public */,
+       5,    0,   47,    2, 0x0a /* Public */,
+       6,    0,   48,    2, 0x0a /* Public */,
+       7,    0,   49,    2, 0x0a /* Public */,
+       8,    0,   50,    2, 0x0a /* Public */,
+       9,    2,   51,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
@@ -75,6 +83,8 @@ static const uint qt_meta_data_MyTcpSocket[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::QString,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,   10,   11,
 
        0        // eod
 };
@@ -90,6 +100,8 @@ void MyTcpSocket::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 2: _t->clientOffline(); break;
         case 3: { QString _r = _t->getName();
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
+        case 4: _t->sendFileToClient(); break;
+        case 5: _t->copyDir((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -144,13 +156,13 @@ int MyTcpSocket::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 6;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 6;
     }
     return _id;
 }

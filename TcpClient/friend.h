@@ -25,6 +25,7 @@ class Friend : public QWidget {
   void updateFriendList(PDU *pdu);
   // 回复群聊信息
   void updateGroupMsg(PDU *pdu);
+  QListWidget *getFriendList();
 
  signals:
 

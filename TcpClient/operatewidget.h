@@ -14,6 +14,7 @@ class OperateWidget : public QWidget {
   explicit OperateWidget(QWidget *parent = nullptr);
   static OperateWidget &getInstance();
   Friend *getFriend();
+  Book *getBook();
 
  private:
   QListWidget *m_pListW;  // 组织主页面左侧常用功能（好友、文件按钮等）

@@ -82,6 +82,8 @@ void Friend::updateGroupMsg(PDU *pdu) {
   m_pShowMsgTE->append(strMsg);
 }
 
+QListWidget *Friend::getFriendList() { return m_pFriendListWidget; }
+
 void Friend::showOnline() {
   if (m_pOnline->isHidden()) {
     m_pOnline->show();
